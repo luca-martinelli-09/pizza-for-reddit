@@ -160,6 +160,10 @@ android {
                 }
             }
         }
+
+         manifestPlaceholders = [
+            appAuthRedirectScheme: 'com.lucamartinelli.pizza'
+        ]
     }
 
     if (isNewArchitectureEnabled()) {
