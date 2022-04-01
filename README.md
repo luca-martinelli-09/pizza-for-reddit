@@ -68,8 +68,6 @@
 
 ## About The Project
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Built With
 
 - [React Native](https://reactnative.dev/)
@@ -90,18 +88,18 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Creare an "**installed app**" at [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps) and obtain the **Client ID**.
+1. Create an "**installed app**" at [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps) and obtain the **Client ID**.
 1. Clone the repo
    ```sh
    git clone https://github.com/luca-martinelli-09/pizza-for-reddit.git
-   cd Pizza
+   cd pizza-for-reddit
    ```
-1. Move the file `gradle.properties` into `android` folder and follow the [following instructions](https://reactnative.dev/docs/signed-apk-android) to get ready for publishing in the Google Play Store. 
+1. Move the file `gradle.properties` into `Pizza/android` folder and follow the [following instructions](https://reactnative.dev/docs/signed-apk-android) to get ready for publishing in the Google Play Store. 
 1. Install NPM packages
    ```sh
-   npm install
+   cd Pizza && npm install
    ```
-1. Enter the Client ID in the `Config.js`
+1. Enter the Client ID in the `Pizza/Config.js`
    ```js
    const CLIENT_ID = "ENTER YOUR CLIENT ID";
    ```
@@ -155,7 +153,6 @@ Project Link: [https://github.com/luca-martinelli-09/pizza-for-reddit](https://g
 [issues-shield]: https://img.shields.io/github/issues/luca-martinelli-09/pizza-for-reddit.svg?style=for-the-badge
 [issues-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/issues
 [license-shield]: https://img.shields.io/github/license/luca-martinelli-09/pizza-for-reddit.svg?style=for-the-badge
-[license-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/blob/master/LICENSE.txt
+[license-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/luca-martinelli
-[product-screenshot]: images/screenshot.png
