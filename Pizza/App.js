@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Theme
-import { AuthContext, ThemeContext } from './components/Context';
+import { ThemeContext } from './components/Context';
 import { MainTheme } from './theme/MainTheme';
 
 // Screens
@@ -30,15 +30,13 @@ const App = () => {
   // Draw the application stack
   return (
     <ThemeContext.Provider value={appTheme}>
-      <AuthContext.Provider value={user}>
-        <SafeAreaProvider>
-          <NavigationContainer theme={NavigatorTheme}>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="SplashScreen" component={SplashScreen} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </AuthContext.Provider>
+      <SafeAreaProvider>
+        <NavigationContainer theme={NavigatorTheme}>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </ThemeContext.Provider>
   );
 };

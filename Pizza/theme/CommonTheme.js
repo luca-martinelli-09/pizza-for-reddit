@@ -69,6 +69,7 @@ const createThemeFromColorScheme = colorScheme => {
       fontSize: 50,
       color: colorScheme.textColor,
       fontFamily: 'Manrope-Bold',
+      fontWeight: 'bold'
     },
 
     paragraph: {

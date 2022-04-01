@@ -2,7 +2,8 @@ import {createThemeFromColorScheme} from './CommonTheme';
 
 const colorScheme = {
   // General
-  backgroundColor: '#121212',
+  backgroundColor: '#000000',
+  accentColor: '#FF4500',
   textColor: '#fff',
   errorColor: '#F38BA0',
 

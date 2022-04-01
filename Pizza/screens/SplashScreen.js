@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 
-import { StatusBar, View, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StatusBar, View, SafeAreaView, Text } from 'react-native';
 
 // Theme
 import { ThemeContext } from '../components/Context';
 
 // Assets
-// import DianaLogo from '../src/assets/images/diana-logo.svg';
+import PizzaLogo from '../src/assets/images/pizza-logo.svg';
 
 const SplashScreen = () => {
   const appTheme = useContext(ThemeContext);
@@ -17,14 +17,15 @@ const SplashScreen = () => {
       <View style={appTheme.style.container}>
         <View
           style={{
-            marginBottom: 50,
+            marginBottom: 20,
             flex: 1,
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'flex-end',
           }}>
-          
+          <PizzaLogo style={{ color: appTheme.colorScheme.accentColor }} width={180} height={180} />
+          <Text style={[appTheme.style.title2, { fontSize: 75, marginTop: 10 }]}>Pizza</Text>
+          <Text style={[appTheme.style.title2, { fontSize: 40 }]}>for Reddit</Text>
         </View>
-        <ActivityIndicator size="large" color={appTheme.colorScheme.textColor} />
       </View>
     </SafeAreaView>
   );
