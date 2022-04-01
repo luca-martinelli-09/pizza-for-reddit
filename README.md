@@ -153,6 +153,6 @@ Project Link: [https://github.com/luca-martinelli-09/pizza-for-reddit](https://g
 [issues-shield]: https://img.shields.io/github/issues/luca-martinelli-09/pizza-for-reddit.svg?style=for-the-badge
 [issues-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/issues
 [license-shield]: https://img.shields.io/github/license/luca-martinelli-09/pizza-for-reddit.svg?style=for-the-badge
-[license-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/blob/master/LICENSE
+[license-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/luca-martinelli
