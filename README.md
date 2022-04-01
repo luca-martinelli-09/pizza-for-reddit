@@ -7,8 +7,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -17,6 +15,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -24,32 +23,23 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/luca-martinelli-09/pizza-for-reddit">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  
+  <img src="assets/Play Store Banner.png" alt="Logo" width="100%">
 
-<h3 align="center">project_title</h3>
-
+  <a href="https://github.com/luca-martinelli-09/pizza-for-reddit"><h3 align="center">Pizza for Reddit</h3></a>
   <p align="center">
-    project_description
+    Pizza for Reddit is another alternative client for Reddit.
     <br />
-    <a href="https://github.com/luca-martinelli-09/pizza-for-reddit"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/luca-martinelli-09/pizza-for-reddit">View Demo</a>
+    <a href="https://play.google.com/store/apps/details?id=com.lucamartinelli.pizza">View on Play Store</a>
     ·
     <a href="https://github.com/luca-martinelli-09/pizza-for-reddit/issues">Report Bug</a>
     ·
     <a href="https://github.com/luca-martinelli-09/pizza-for-reddit/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -68,103 +58,58 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `luca-martinelli-09`, `pizza-for-reddit`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+- [React Native](https://reactnative.dev/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
-## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
+## Getting Started
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+- npm
   ```sh
   npm install npm@latest -g
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Creare an "**installed app**" at [https://www.reddit.com/prefs/apps](https://www.reddit.com/prefs/apps) and obtain the **Client ID**.
+1. Clone the repo
    ```sh
    git clone https://github.com/luca-martinelli-09/pizza-for-reddit.git
+   cd Pizza
    ```
-3. Install NPM packages
+1. Move the file `gradle.properties` into `android` folder and follow the [following instructions](https://reactnative.dev/docs/signed-apk-android) to get ready for publishing in the Google Play Store. 
+1. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+1. Enter the Client ID in the `Config.js`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const CLIENT_ID = "ENTER YOUR CLIENT ID";
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/luca-martinelli-09/pizza-for-reddit/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -180,41 +125,27 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Luca Martinelli - [@LucaMartinelli0](https://twitter.com/LucaMartinelli0) - martinelliluca98@gmail.com
 
 Project Link: [https://github.com/luca-martinelli-09/pizza-for-reddit](https://github.com/luca-martinelli-09/pizza-for-reddit)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/luca-martinelli-09/pizza-for-reddit.svg?style=for-the-badge
 [contributors-url]: https://github.com/luca-martinelli-09/pizza-for-reddit/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/luca-martinelli-09/pizza-for-reddit.svg?style=for-the-badge

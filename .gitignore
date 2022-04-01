@@ -60,6 +60,6 @@ buck-out/
 /ios/Pods/
 /vendor/bundle/
 
-gradle.properties
+Pizza/android/gradle.properties
 
 .vscode/
