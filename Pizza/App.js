@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useEffect, useReducer } from 'react';
 import { useColorScheme } from 'react-native';
 
-import { APP_PACKAGE, CLIENT_ID } from './Config';
+import {
+  LOADING,
+  ERROR,
+  RETRIEVE_TOKEN,
+  LOGOUT,
+  LOGIN,
+  loginReducer,
+  signIn,
+  signOut
+} from './api/Auth';
 
 // External libraries
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import base64 from 'react-native-base64';
-import { authorize, refresh } from 'react-native-app-auth';
-import axios from 'axios';
 
 // Theme
 import { AuthContext, ThemeContext } from './components/Context';
@@ -22,45 +27,6 @@ import SplashScreen from './screens/SplashScreen';
 // Create the stack navigator
 const Stack = createNativeStackNavigator();
 
-const config = {
-  redirectUrl: APP_PACKAGE + "://oauth2redirect/reddit",
-  clientId: CLIENT_ID,
-  clientSecret: '',
-  scopes: [
-    'identity',
-    'edit',
-    'flair',
-    'history',
-    'modconfig',
-    'modflair',
-    'modlog',
-    'modposts',
-    'modwiki',
-    'mysubreddits',
-    'privatemessages',
-    'read',
-    'report',
-    'save',
-    'submit',
-    'subscribe',
-    'vote',
-    'wikiedit',
-    'wikiread',
-  ],
-  serviceConfiguration: {
-    authorizationEndpoint: 'https://www.reddit.com/api/v1/authorize.compact',
-    tokenEndpoint: 'https://www.reddit.com/api/v1/access_token',
-  },
-  customHeaders: {
-    token: {
-      Authorization: 'Basic ' + base64.encode(CLIENT_ID),
-    },
-  },
-  additionalParameters: {
-    duration: 'permanent',
-  },
-};
-
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const appTheme = isDarkMode ? MainTheme.dark : MainTheme.light;
@@ -71,43 +37,79 @@ const App = () => {
     },
   };
 
-  const [accessToken, setAccessToken] = useState(null);
+  const initialLoginState = {
+    isLoading: true,
+    accessToken: null,
+    refreshToken: null,
+    me: null,
+    error: null,
+  };
 
-  useEffect(() => {
-    async function getUser() {
-      const result = await authorize(config);
+  const [loginState, setLoginState] = useReducer(
+    loginReducer,
+    initialLoginState,
+  );
 
-      console.log(result);
+  const authContext = React.useMemo(() => ({
+    loginState: loginState,
+    autoSignIn: async () => {
+      setLoginState({ type: LOADING });
 
-      const result2 = await refresh(config, {
-        refreshToken: result.refreshToken,
-      });
+      let responseData;
+      try {
+        responseData = await signIn(true);
+      } catch (error) {
+        setLoginState({ type: ERROR, error: error });
+        return;
+      }
 
-      console.log(result2);
+      if (responseData != null) {
+        setLoginState({
+          type: RETRIEVE_TOKEN,
+          accessToken: responseData.accessToken,
+          refreshToken: responseData.refreshToken,
+          me: responseData.me,
+        });
+      } else {
+        setLoginState({
+          type: LOGOUT,
+        });
+      }
+    },
+    signIn: async () => {
+      let responseData;
+      try {
+        responseData = await signIn();
+      } catch (error) {
+        setLoginState({ type: ERROR, error: error });
+        return;
+      }
 
-      const options = {
-        method: 'GET',
-        url: 'https://oauth.reddit.com/api/v1/me',
-        headers: {
-          Authorization: "Bearer " + result2.accessToken
-        },
-      };
+      if (responseData != null) {
+        setLoginState({
+          type: LOGIN,
+          accessToken: responseData.accessToken,
+          refreshToken: responseData.refreshToken,
+          me: responseData.me,
+        });
 
-      axios.request(options).then(function (res) {
-        console.log(res.data)
-      }).catch(function (error) {
-        console.error(error);
-      });
+        return true;
+      }
 
-      return result;
-    }
-    getUser();
-  }, []);
+      return false;
+    },
+    signOut: async () => {
+      await signOut();
+      setLoginState({ type: LOGOUT });
+    },
+  }));
+
+  useEffect(() => authContext.autoSignIn(), []);
 
   // Draw the application stack
   return (
     <ThemeContext.Provider value={appTheme}>
-      <AuthContext.Provider value={accessToken}>
+      <AuthContext.Provider value={authContext}>
         <SafeAreaProvider>
           <NavigationContainer theme={NavigatorTheme}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
