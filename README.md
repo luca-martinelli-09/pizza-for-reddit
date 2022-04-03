@@ -34,6 +34,8 @@
     Pizza for Reddit is another alternative client for Reddit.
     <br />
     <a href="https://play.google.com/store/apps/details?id=com.lucamartinelli.pizza">View on Play Store</a>
+    .
+    <a href="https://www.reddit.com/r/PizzaForReddit/">Subreddit</a>
     ·
     <a href="https://github.com/luca-martinelli-09/pizza-for-reddit/issues">Report Bug</a>
     ·
