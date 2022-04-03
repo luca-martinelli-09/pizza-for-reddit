@@ -4,6 +4,7 @@ import { APP_PACKAGE, CLIENT_ID, USER_AGENT } from '../Config';
 import base64 from 'react-native-base64';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { authorize, refresh } from 'react-native-app-auth';
+import axios from 'axios';
 
 const LOADING = 'LOADING';
 const ERROR = 'ERROR';
@@ -17,12 +18,20 @@ const config = {
   clientSecret: '',
   scopes: [
     'identity',
+    'account',
+    'creddits',
     'edit',
     'flair',
     'history',
+    'livemanage',
     'modconfig',
+    'modcontributors',
     'modflair',
     'modlog',
+    'modmail',
+    'modnote',
+    'modothers',
+    'modself',
     'modposts',
     'modwiki',
     'mysubreddits',
@@ -30,6 +39,7 @@ const config = {
     'read',
     'report',
     'save',
+    'structuredstyles',
     'submit',
     'subscribe',
     'vote',
@@ -68,7 +78,7 @@ const signIn = async (getToken = false) => {
       result = await authorize(config);
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
     throw error;
   }
 
@@ -90,10 +100,10 @@ const signIn = async (getToken = false) => {
     if (getMe.status == 200) {
       me = getMe.data;
     } else {
-      return null;
+      throw getMe;
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
     throw error;
   }
 
@@ -107,7 +117,9 @@ const signIn = async (getToken = false) => {
 const signOut = async () => {
   try {
     await AsyncStorage.removeItem('refreshToken');
-  } catch (e) { }
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const loginReducer = (prevState, action) => {
@@ -154,12 +166,21 @@ const loginReducer = (prevState, action) => {
   }
 };
 
+const initialLoginState = {
+  isLoading: true,
+  accessToken: null,
+  refreshToken: null,
+  me: null,
+  error: null,
+};
+
 export {
   LOADING,
   ERROR,
   RETRIEVE_TOKEN,
   LOGIN,
   LOGOUT,
+  initialLoginState,
   loginReducer,
   signIn,
   signOut,

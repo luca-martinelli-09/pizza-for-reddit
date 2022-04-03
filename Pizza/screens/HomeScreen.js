@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, Text, Button } from 'react-native';
 
 // Theme
-import { ThemeContext } from '../components/Context';
+import { ThemeContext, AuthContext } from '../components/Context';
 
 const HomeScreen = () => {
   const appTheme = useContext(ThemeContext);
+  const { loginState, signOut } = useContext(AuthContext);
 
   return (
     <View style={appTheme.style.mainContainer}>
@@ -19,6 +20,8 @@ const HomeScreen = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+          <Text>{loginState.me.name}</Text>
+          <Button onPress={() => signOut()} title="Esci" />
         </View>
       </View>
     </View>

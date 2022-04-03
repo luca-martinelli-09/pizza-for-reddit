@@ -8,6 +8,7 @@ import {
   LOGOUT,
   LOGIN,
   loginReducer,
+  initialLoginState,
   signIn,
   signOut
 } from './api/Auth';
@@ -23,6 +24,8 @@ import { MainTheme } from './theme/MainTheme';
 
 // Screens
 import SplashScreen from './screens/SplashScreen';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 
 // Create the stack navigator
 const Stack = createNativeStackNavigator();
@@ -37,14 +40,6 @@ const App = () => {
     },
   };
 
-  const initialLoginState = {
-    isLoading: true,
-    accessToken: null,
-    refreshToken: null,
-    me: null,
-    error: null,
-  };
-
   const [loginState, setLoginState] = useReducer(
     loginReducer,
     initialLoginState,
@@ -52,34 +47,10 @@ const App = () => {
 
   const authContext = React.useMemo(() => ({
     loginState: loginState,
-    autoSignIn: async () => {
-      setLoginState({ type: LOADING });
-
+    signIn: async (auto = false) => {
       let responseData;
       try {
-        responseData = await signIn(true);
-      } catch (error) {
-        setLoginState({ type: ERROR, error: error });
-        return;
-      }
-
-      if (responseData != null) {
-        setLoginState({
-          type: RETRIEVE_TOKEN,
-          accessToken: responseData.accessToken,
-          refreshToken: responseData.refreshToken,
-          me: responseData.me,
-        });
-      } else {
-        setLoginState({
-          type: LOGOUT,
-        });
-      }
-    },
-    signIn: async () => {
-      let responseData;
-      try {
-        responseData = await signIn();
+        responseData = await signIn(auto);
       } catch (error) {
         setLoginState({ type: ERROR, error: error });
         return;
@@ -92,11 +63,9 @@ const App = () => {
           refreshToken: responseData.refreshToken,
           me: responseData.me,
         });
-
-        return true;
+      } else {
+        setLoginState({ type: LOGOUT });
       }
-
-      return false;
     },
     signOut: async () => {
       await signOut();
@@ -104,7 +73,12 @@ const App = () => {
     },
   }));
 
-  useEffect(() => authContext.autoSignIn(), []);
+  useEffect(() => {
+    function autoSignIn() {
+      authContext.signIn(true)
+    };
+    autoSignIn();
+  }, []);
 
   // Draw the application stack
   return (
@@ -113,7 +87,15 @@ const App = () => {
         <SafeAreaProvider>
           <NavigationContainer theme={NavigatorTheme}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="SplashScreen" component={SplashScreen} />
+              {
+                authContext.loginState.isLoading ?
+                  <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                  :
+                  authContext.loginState.me ?
+                    <Stack.Screen name="HomeScreen" component={HomeScreen} />
+                    :
+                    <Stack.Screen name="LoginScreen" component={LoginScreen} />
+              }
             </Stack.Navigator>
           </NavigationContainer>
         </SafeAreaProvider>
