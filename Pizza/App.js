@@ -47,10 +47,10 @@ const App = () => {
 
   const authContext = React.useMemo(() => ({
     loginState: loginState,
-    signIn: async (auto = false) => {
+    signIn: async (useRefreshToken = false) => {
       let responseData;
       try {
-        responseData = await signIn(auto);
+        responseData = await signIn(useRefreshToken);
       } catch (error) {
         setLoginState({ type: ERROR, error: error });
         return;
@@ -58,14 +58,18 @@ const App = () => {
 
       if (responseData != null) {
         setLoginState({
-          type: LOGIN,
+          type: useRefreshToken ? RETRIEVE_TOKEN : LOGIN,
           accessToken: responseData.accessToken,
           refreshToken: responseData.refreshToken,
           me: responseData.me,
         });
+
+        return true;
       } else {
         setLoginState({ type: LOGOUT });
       }
+
+      return false;
     },
     signOut: async () => {
       await signOut();

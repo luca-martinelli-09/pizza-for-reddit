@@ -20,11 +20,15 @@ const SplashScreen = () => {
             marginBottom: 20,
             flex: 1,
             alignItems: 'center',
-            justifyContent: 'flex-end',
+            justifyContent: 'center',
           }}>
-          <PizzaLogo style={{ color: appTheme.colorScheme.accentColor }} width={180} height={180} />
-          <Text style={[appTheme.style.title2, { fontSize: 75, marginTop: 10 }]}>Pizza</Text>
-          <Text style={[appTheme.style.title2, { fontSize: 40 }]}>for Reddit</Text>
+          <View style={{
+            backgroundColor: appTheme.colorScheme.accentColor,
+            padding: 20,
+            borderRadius: 200
+          }}>
+            <PizzaLogo style={{ color: '#fff' }} width={55} height={55} />
+          </View>
         </View>
       </View>
     </SafeAreaView>

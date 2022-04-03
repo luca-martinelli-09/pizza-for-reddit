@@ -1,11 +1,13 @@
-import {createThemeFromColorScheme} from './CommonTheme';
+import { createThemeFromColorScheme } from './CommonTheme';
 
 const colorScheme = {
   // General
   backgroundColor: '#FEFBF3',
-  accentColor: '#FF4500',
+  accentColor: '#ff4500',
   textColor: '#333',
   errorColor: '#C84361',
+
+  onlineColor: '#80ED99',
 
   // Button
   buttonColor: '#32AFA9',
@@ -13,10 +15,11 @@ const colorScheme = {
 };
 
 const statusBarProps = {
-  backgroundColor: colorScheme.backgroundColor,
+  translucent: true,
+  backgroundColor: 'transparent',
   barStyle: 'dark-content',
 };
 
 const theme = createThemeFromColorScheme(colorScheme);
 
-export {theme, colorScheme, statusBarProps};
+export { theme, colorScheme, statusBarProps };

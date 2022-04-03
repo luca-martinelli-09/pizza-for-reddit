@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const metrics = {
   // General
-  borderRadius: 18,
+  borderRadius: 15,
   padding: 25,
   headerHeight: 90,
   marginSpacer: 20,
@@ -60,9 +60,10 @@ const createThemeFromColorScheme = colorScheme => {
     },
 
     title1: {
-      fontSize: 35,
-      fontFamily: 'Manrope-Regular',
+      fontSize: 55,
+      fontFamily: 'Manrope-Bold',
       color: colorScheme.textColor,
+      fontWeight: 'bold'
     },
 
     title2: {

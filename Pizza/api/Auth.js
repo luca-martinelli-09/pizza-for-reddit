@@ -61,10 +61,10 @@ const config = {
   },
 };
 
-const signIn = async (getToken = false) => {
+const signIn = async (useRefreshToken = false) => {
   let result;
   try {
-    if (getToken) {
+    if (useRefreshToken) {
       const refreshToken = await AsyncStorage.getItem('refreshToken');
 
       if (!refreshToken) {
